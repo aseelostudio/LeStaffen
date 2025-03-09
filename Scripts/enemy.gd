@@ -29,7 +29,7 @@ func _physics_process(_delta: float) -> void:
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
-		print(collider)
+		
 		if collider is WaterWall:
 			collider._on_enemy_contact(self, collision.get_position())
 

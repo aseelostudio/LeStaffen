@@ -1,14 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://bere6isyf5684"]
+[gd_scene load_steps=8 format=3 uid="uid://bere6isyf5684"]
 
 [ext_resource type="Script" uid="uid://ca5rr12g62tlg" path="res://Scripts/game_controller.gd" id="1_nqxm2"]
 [ext_resource type="Theme" uid="uid://d3pmiibsdynfb" path="res://Assets/theme.tres" id="2_kx2cw"]
 [ext_resource type="Texture2D" uid="uid://dv2l2fgaj3srt" path="res://Assets/LeStaffen.png" id="3_goscw"]
+[ext_resource type="Texture2D" uid="uid://c5hwukuofoo1k" path="res://Assets/aseelostudio.png" id="4_ppfu0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kx2cw"]
 bg_color = Color(0.775206, 0.388956, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_goscw"]
 bg_color = Color(0.67667, 0.502224, 0.889563, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7la68"]
+bg_color = Color(0.0313726, 0.101961, 0.231373, 1)
 
 [node name="GameController" type="Node"]
 script = ExtResource("1_nqxm2")
@@ -144,6 +148,54 @@ offset_bottom = 150.0
 scale = Vector2(3, 3)
 texture = ExtResource("3_goscw")
 
+[node name="SplashScreen" type="Panel" parent="MenuUI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7la68")
+
+[node name="TextureRect" type="TextureRect" parent="MenuUI/SplashScreen"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -296.0
+offset_top = -276.0
+offset_right = -200.0
+offset_bottom = -180.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(6, 6)
+texture = ExtResource("4_ppfu0")
+
+[node name="Timer" type="Timer" parent="MenuUI/SplashScreen"]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="Label" type="Label" parent="MenuUI/SplashScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = 60.0
+offset_right = 37.0
+offset_bottom = 87.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.623529, 0.0705882, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "present"
+
 [connection signal="button_up" from="MenuUI/Menu/MarginContainer/VBoxContainer2/VBoxContainer/Button" to="." method="start_game"]
 [connection signal="button_up" from="MenuUI/Menu/MarginContainer/VBoxContainer2/VBoxContainer/Button2" to="MenuUI/Menu/MarginContainer/Label" method="set_visible" binds= [true]]
 [connection signal="button_up" from="MenuUI/Menu/MarginContainer/Label/Button" to="MenuUI/Menu/MarginContainer/Label" method="set_visible" binds= [false]]
+[connection signal="timeout" from="MenuUI/SplashScreen/Timer" to="MenuUI/SplashScreen" method="queue_free"]

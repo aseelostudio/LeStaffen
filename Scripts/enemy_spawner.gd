@@ -8,6 +8,9 @@ signal queue_enemy(enemy)
 
 @onready var spawn_point : PathFollow2D = $SpawnPoint
 
+func _ready():
+	randomize()
+	spawn_point.progress_ratio = randf_range(0,1)
 
 func _process(delta):
 	spawn_point.progress_ratio += delta * speed
