@@ -1,0 +1,18 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://d3pmiibsdynfb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fyvmx"]
+
+[sub_resource type="Gradient" id="Gradient_fyvmx"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0.564706, 0.776471, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0dftj"]
+gradient = SubResource("Gradient_fyvmx")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h5t51"]
+texture = SubResource("GradientTexture2D_0dftj")
+
+[resource]
+Button/font_sizes/font_size = 40
+Panel/styles/panel = SubResource("StyleBoxFlat_fyvmx")
+ProgressBar/styles/fill = SubResource("StyleBoxTexture_h5t51")

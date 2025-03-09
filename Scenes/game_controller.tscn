@@ -1,0 +1,124 @@
+[gd_scene load_steps=5 format=3 uid="uid://bere6isyf5684"]
+
+[ext_resource type="Script" uid="uid://ca5rr12g62tlg" path="res://Scripts/game_controller.gd" id="1_nqxm2"]
+[ext_resource type="Theme" uid="uid://d3pmiibsdynfb" path="res://Assets/theme.tres" id="2_kx2cw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kx2cw"]
+bg_color = Color(0.775206, 0.388956, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_goscw"]
+bg_color = Color(0.67667, 0.502224, 0.889563, 1)
+
+[node name="GameController" type="Node"]
+script = ExtResource("1_nqxm2")
+
+[node name="MenuUI" type="CanvasLayer" parent="."]
+
+[node name="Menu" type="Control" parent="MenuUI"]
+texture_filter = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="MenuUI/Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_kx2cw")
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuUI/Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 400
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_right = 400
+theme_override_constants/margin_bottom = 200
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MenuUI/Menu/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MenuUI/Menu/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_kx2cw")
+text = "BEST SCORE: 0"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuUI/Menu/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MenuUI/Menu/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_kx2cw")
+text = "START"
+
+[node name="HSeparator" type="HSeparator" parent="MenuUI/Menu/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+
+[node name="Button2" type="Button" parent="MenuUI/Menu/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_kx2cw")
+text = "HOW TO PLAY"
+
+[node name="Label" type="Label" parent="MenuUI/Menu/MarginContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 1
+mouse_filter = 0
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_goscw")
+text = " LMB: Cast spell
+ RMG: Move to click
+ MMB: Pause game
+ Mouse Wheel: Change staff
+
+ Watch out for your mana on the 
+ upper right corner!"
+
+[node name="Button" type="Button" parent="MenuUI/Menu/MarginContainer/Label"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -132.0
+offset_top = -56.0
+offset_right = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "Back"
+
+[node name="Label" type="Label" parent="MenuUI/Menu"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -169.5
+offset_top = -37.0
+offset_right = 169.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Code and Sprites made by Gasper Pollonero"
+
+[connection signal="button_up" from="MenuUI/Menu/MarginContainer/VBoxContainer2/VBoxContainer/Button" to="." method="start_game"]
+[connection signal="button_up" from="MenuUI/Menu/MarginContainer/VBoxContainer2/VBoxContainer/Button2" to="MenuUI/Menu/MarginContainer/Label" method="set_visible" binds= [true]]
+[connection signal="button_up" from="MenuUI/Menu/MarginContainer/Label/Button" to="MenuUI/Menu/MarginContainer/Label" method="set_visible" binds= [false]]

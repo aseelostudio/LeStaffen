@@ -7,6 +7,7 @@ signal health_changed()
 signal invincibility_changed()
 
 var timer : Timer
+var is_dead : bool = false
 
 @export var max_health_points : int
 
@@ -22,6 +23,7 @@ var health_points : int :
 			
 			if value < 0:
 				health_points = 0
+				is_dead = true
 				death.emit()
 			else:
 				health_points = value

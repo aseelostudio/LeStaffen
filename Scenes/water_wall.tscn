@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=4 uid="uid://dngatwnvre8ol"]
+
+[ext_resource type="Texture2D" uid="uid://b1utc7kimqbdb" path="res://Assets/Tiles16.png" id="1_030xh"]
+[ext_resource type="Script" uid="uid://5j0mvuejwpbo" path="res://Scripts/water_wall.gd" id="2_0yayc"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0yayc"]
+texture = ExtResource("1_030xh")
+margins = Vector2i(16, 0)
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_xm6to"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_0yayc")
+
+[node name="WaterWall" type="TileMapLayer"]
+tile_map_data = PackedByteArray("AAD1//v/AAAAAAAAAAD1//z/AAAAAAAAAAD1//3/AAAAAAAAAAD1//7/AAAAAAAAAAD1////AAAAAAAAAAD1/wAAAAAAAAAAAAD1/wEAAAAAAAAAAAD1/wIAAAAAAAAAAAD1/wMAAAAAAAAAAAD1/wQAAAAAAAAAAAD1/wUAAAAAAAAAAAD1//r/AAAAAAAAAAD2//n/AAAAAAAAAAD2/wYAAAAAAAAAAAD3//j/AAAAAAAAAAD3/wcAAAAAAAAAAAD4//f/AAAAAAAAAAD4/wgAAAAAAAAAAAD5//b/AAAAAAAAAAD5/wkAAAAAAAAAAAD6//b/AAAAAAAAAAD6/wkAAAAAAAAAAAD7//b/AAAAAAAAAAD7/wkAAAAAAAAAAAD8//b/AAAAAAAAAAD8/wkAAAAAAAAAAAD9//b/AAAAAAAAAAD9/wkAAAAAAAAAAAD+//b/AAAAAAAAAAD+/wkAAAAAAAAAAAD///b/AAAAAAAAAAD//wkAAAAAAAAAAAAAAPb/AAAAAAAAAAAAAAkAAAAAAAAAAAABAPb/AAAAAAAAAAABAAkAAAAAAAAAAAACAPb/AAAAAAAAAAACAAkAAAAAAAAAAAADAPb/AAAAAAAAAAADAAkAAAAAAAAAAAAEAPb/AAAAAAAAAAAEAAkAAAAAAAAAAAAFAPb/AAAAAAAAAAAFAAkAAAAAAAAAAAAGAPb/AAAAAAAAAAAGAAkAAAAAAAAAAAAHAPf/AAAAAAAAAAAHAAgAAAAAAAAAAAAIAPj/AAAAAAAAAAAIAAcAAAAAAAAAAAAJAPn/AAAAAAAAAAAJAAYAAAAAAAAAAAAKAPr/AAAAAAAAAAAKAPv/AAAAAAAAAAAKAPz/AAAAAAAAAAAKAP3/AAAAAAAAAAAKAP7/AAAAAAAAAAAKAP//AAAAAAAAAAAKAAAAAAAAAAAAAAAKAAEAAAAAAAAAAAAKAAIAAAAAAAAAAAAKAAMAAAAAAAAAAAAKAAQAAAAAAAAAAAAKAAUAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_xm6to")
+script = ExtResource("2_0yayc")
+
+[node name="LifeTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="WallArea" type="Area2D" parent="."]
+collision_layer = 1024
+collision_mask = 64
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WallArea"]
+polygon = PackedVector2Array(-216, -312, -216, -296, 208, -296, 328, -176, 328, 176, 212, 296, -208, 300, -332, 176, -328, -176, -224, -288, -232, -296, -340, -180, -344, 180, -212, 312, 212, 308, 344, 176, 344, -176, 208, -312)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+enabled = false
+target_position = Vector2(-20, 64)
+collision_mask = 64
+
+[connection signal="timeout" from="LifeTimer" to="." method="_on_life_timer_timeout"]
+[connection signal="body_entered" from="WallArea" to="." method="_on_wall_area_body_entered"]

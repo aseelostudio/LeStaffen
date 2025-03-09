@@ -1,11 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://d3n22vrorcuch"]
+[gd_scene load_steps=9 format=3 uid="uid://d3n22vrorcuch"]
 
 [ext_resource type="PackedScene" uid="uid://bw1q7abcrk73q" path="res://Scenes/map.tscn" id="1_bo1nx"]
 [ext_resource type="Script" uid="uid://o8ruvxpyhi0b" path="res://Scripts/main.gd" id="1_kry3j"]
 [ext_resource type="PackedScene" uid="uid://6h5x6g2hp21j" path="res://Scenes/character.tscn" id="2_8gbba"]
+[ext_resource type="PackedScene" uid="uid://csdamwhde7tje" path="res://Scenes/spawner_path.tscn" id="3_6bp64"]
 [ext_resource type="PackedScene" uid="uid://cybalrls2vxv5" path="res://Scenes/UI_character.tscn" id="3_8gbba"]
-[ext_resource type="PackedScene" uid="uid://dxws4ch22piqp" path="res://Scenes/enemy.tscn" id="4_jjvhh"]
-[ext_resource type="Script" uid="uid://p568c2b612hm" path="res://Scripts/writer2D.gd" id="6_21xkr"]
+[ext_resource type="PackedScene" uid="uid://gj1ku0b37t1r" path="res://Scenes/staff.tscn" id="4_21xkr"]
+[ext_resource type="Texture2D" uid="uid://b6gujiaplrhmg" path="res://Assets/Tiles.png" id="6_6bp64"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_344ge"]
+atlas = ExtResource("6_6bp64")
+region = Rect2(0, 128, 32, 32)
 
 [node name="Main" type="Node" node_paths=PackedStringArray("character")]
 script = ExtResource("1_kry3j")
@@ -13,23 +18,33 @@ character = NodePath("World/Character")
 
 [node name="World" type="Node2D" parent="."]
 
-[node name="Map" parent="World" instance=ExtResource("1_bo1nx")]
-
 [node name="Character" parent="World" node_paths=PackedStringArray("camera") instance=ExtResource("2_8gbba")]
-position = Vector2(420, 215)
+position = Vector2(624, 352)
 camera = NodePath("../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="World"]
+position = Vector2(888, 952)
+limit_left = 0
+limit_top = 0
+limit_right = 1472
+limit_bottom = 1215
 position_smoothing_enabled = true
 
 [node name="Enemies" type="Node2D" parent="World"]
 
-[node name="Enemy" parent="World/Enemies" instance=ExtResource("4_jjvhh")]
-position = Vector2(997, 588)
+[node name="Staff" parent="World" node_paths=PackedStringArray("character") instance=ExtResource("4_21xkr")]
+character = NodePath("../Character")
+
+[node name="Map" parent="World" instance=ExtResource("1_bo1nx")]
+
+[node name="SpawnerPath" parent="World" instance=ExtResource("3_6bp64")]
+position = Vector2(8.72729, 35.5555)
+scale = Vector2(1.13636, 1.55556)
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 
 [node name="UI" type="Control" parent="UILayer"]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -38,9 +53,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Character" parent="UILayer/UI" node_paths=PackedStringArray("character") instance=ExtResource("3_8gbba")]
+[node name="Character" parent="UILayer/UI" node_paths=PackedStringArray("character", "staff") instance=ExtResource("3_8gbba")]
 layout_mode = 1
 character = NodePath("../../../World/Character")
-
-[node name="Node" type="Node2D" parent="."]
-script = ExtResource("6_21xkr")
+staff = NodePath("../../../World/Staff")
+life_texture = SubResource("AtlasTexture_344ge")

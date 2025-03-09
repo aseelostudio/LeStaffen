@@ -1,11 +1,12 @@
 [gd_scene load_steps=5 format=3 uid="uid://6h5x6g2hp21j"]
 
-[ext_resource type="Texture2D" uid="uid://b2h7rlr4ft1ku" path="res://icon.svg" id="1_lkv7d"]
 [ext_resource type="Script" uid="uid://n5wc1115wpqn" path="res://Scripts/character.gd" id="1_ushfy"]
+[ext_resource type="Texture2D" uid="uid://b6gujiaplrhmg" path="res://Assets/Tiles.png" id="2_owm7s"]
 [ext_resource type="Script" uid="uid://fybwgppk28g1" path="res://LifeManager/Scripts/GDScript/health_manager.gd" id="3_owm7s"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ushfy"]
-size = Vector2(114, 112)
+[sub_resource type="AtlasTexture" id="AtlasTexture_nytcm"]
+atlas = ExtResource("2_owm7s")
+region = Rect2(192, 160, 128, 128)
 
 [node name="Character" type="CharacterBody2D"]
 collision_layer = 8
@@ -15,10 +16,11 @@ script = ExtResource("1_ushfy")
 speed = 10.0
 
 [node name="Icon" type="Sprite2D" parent="."]
-texture = ExtResource("1_lkv7d")
+texture = SubResource("AtlasTexture_nytcm")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_ushfy")
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, 5)
+polygon = PackedVector2Array(-36, 55, 36, 55, 16, 11, 20, 3, 48, -1, 56, -13, 16, -21, 16, -45, 4, -57, -20, -17, -40, -17, -56, -9, -40, -1, -20, 3)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
 

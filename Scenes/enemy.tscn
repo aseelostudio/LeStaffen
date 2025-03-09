@@ -1,25 +1,30 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxws4ch22piqp"]
+[gd_scene load_steps=7 format=3 uid="uid://dxws4ch22piqp"]
 
 [ext_resource type="Script" uid="uid://qus4pcggb4c7" path="res://Scripts/enemy.gd" id="1_afpow"]
-[ext_resource type="Texture2D" uid="uid://b2h7rlr4ft1ku" path="res://icon.svg" id="1_hghv2"]
+[ext_resource type="Texture2D" uid="uid://b6gujiaplrhmg" path="res://Assets/Tiles.png" id="2_afpow"]
 [ext_resource type="Script" uid="uid://fybwgppk28g1" path="res://LifeManager/Scripts/GDScript/health_manager.gd" id="3_287tu"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1f0kj"]
-size = Vector2(112, 112)
+[sub_resource type="AtlasTexture" id="AtlasTexture_287tu"]
+atlas = ExtResource("2_afpow")
+region = Rect2(192, 0, 64, 64)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_afpow"]
-size = Vector2(128, 128)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1f0kj"]
+size = Vector2(48, 48)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_afpow"]
+radius = 31.0
+height = 72.0
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 64
-collision_mask = 9
+collision_mask = 1032
 motion_mode = 1
 script = ExtResource("1_afpow")
+speed = 200.0
 recoil = 5.0
 
 [node name="Icon" type="Sprite2D" parent="."]
-modulate = Color(0, 0, 1, 1)
-texture = ExtResource("1_hghv2")
+texture = SubResource("AtlasTexture_287tu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_1f0kj")
@@ -32,7 +37,7 @@ collision_layer = 0
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_afpow")
+shape = SubResource("CapsuleShape2D_afpow")
 
 [node name="KnockbackTimer" type="Timer" parent="."]
 wait_time = 0.1

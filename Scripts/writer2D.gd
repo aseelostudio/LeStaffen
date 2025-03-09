@@ -1,4 +1,3 @@
-class_name Writer2D
 extends Node2D
 
 signal line_written()
@@ -26,12 +25,12 @@ var current_line : Line2D :
 			_is_writing = true
 			current_line = value
 			add_child(current_line)
-			current_line.name = "Line" + str(get_child_count())
 
 func _ready():
 	
 	if example_line == null:
 		example_line = Line2D.new()
+		example_line.self_modulate = Color.TRANSPARENT
 		add_child(example_line)
 
 func _unhandled_input(event: InputEvent) -> void:

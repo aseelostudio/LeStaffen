@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="MicroJam035"
-run/main_scene="uid://d3n22vrorcuch"
+run/main_scene="uid://bere6isyf5684"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -21,6 +21,7 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
+mouse_cursor/custom_image="res://Assets/Staff.png"
 
 [layer_names]
 
@@ -28,8 +29,10 @@ window/stretch/aspect="expand"
 2d_physics/layer_4="Character"
 2d_physics/layer_7="Enemies"
 2d_physics/layer_10="Bullets"
+2d_physics/layer_11="Water"
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
