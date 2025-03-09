@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://d3n22vrorcuch"]
+[gd_scene load_steps=10 format=3 uid="uid://d3n22vrorcuch"]
 
 [ext_resource type="PackedScene" uid="uid://bw1q7abcrk73q" path="res://Scenes/map.tscn" id="1_bo1nx"]
 [ext_resource type="Script" uid="uid://o8ruvxpyhi0b" path="res://Scripts/main.gd" id="1_kry3j"]
 [ext_resource type="PackedScene" uid="uid://6h5x6g2hp21j" path="res://Scenes/character.tscn" id="2_8gbba"]
+[ext_resource type="Texture2D" uid="uid://mw7f0n11kcfm" path="res://Assets/Background.PNG" id="2_344ge"]
 [ext_resource type="PackedScene" uid="uid://csdamwhde7tje" path="res://Scenes/spawner_path.tscn" id="3_6bp64"]
 [ext_resource type="PackedScene" uid="uid://cybalrls2vxv5" path="res://Scenes/UI_character.tscn" id="3_8gbba"]
 [ext_resource type="PackedScene" uid="uid://gj1ku0b37t1r" path="res://Scenes/staff.tscn" id="4_21xkr"]
@@ -17,6 +18,10 @@ script = ExtResource("1_kry3j")
 character = NodePath("World/Character")
 
 [node name="World" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="World"]
+position = Vector2(728, 608)
+texture = ExtResource("2_344ge")
 
 [node name="Character" parent="World" node_paths=PackedStringArray("camera") instance=ExtResource("2_8gbba")]
 position = Vector2(624, 352)

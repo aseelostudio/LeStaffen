@@ -26,15 +26,13 @@ func _physics_process(_delta: float) -> void:
 		else:
 			velocity = (character.global_position - global_position).normalized() * speed
 	
-	"""for i in get_slide_collision_count():
+	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
 		print(collider)
 		if collider is WaterWall:
-			var tile_pos = collider.world_to_map(position)  # character's position
-			tile_pos -= collision.normal  # colliding tile position
-			collider.set_cellv(tile_pos, -1)
-"""
+			collider._on_enemy_contact(self, collision.get_position())
+
 	move_and_slide()
 
 func _on_death():

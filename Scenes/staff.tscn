@@ -17,7 +17,7 @@ icon = ExtResource("3_njl6b")
 
 [node name="WaterState" type="Node2D" parent="."]
 script = ExtResource("3_sc1j2")
-mana_cost = 20
+mana_cost = 50
 
 [node name="PurpleState" type="Node2D" parent="."]
 script = ExtResource("5_4pxga")

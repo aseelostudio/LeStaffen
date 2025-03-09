@@ -1,6 +1,10 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://d3pmiibsdynfb"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://d3pmiibsdynfb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0dftj"]
+bg_color = Color(1, 0.756863, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fyvmx"]
+bg_color = Color(0.0319512, 0.100275, 0.230818, 1)
 
 [sub_resource type="Gradient" id="Gradient_fyvmx"]
 offsets = PackedFloat32Array(0)
@@ -13,6 +17,9 @@ gradient = SubResource("Gradient_fyvmx")
 texture = SubResource("GradientTexture2D_0dftj")
 
 [resource]
+Button/colors/font_outline_color = Color(0, 0.027451, 0.611765, 1)
+Button/constants/outline_size = 8
 Button/font_sizes/font_size = 40
+Button/styles/normal = SubResource("StyleBoxFlat_0dftj")
 Panel/styles/panel = SubResource("StyleBoxFlat_fyvmx")
 ProgressBar/styles/fill = SubResource("StyleBoxTexture_h5t51")
